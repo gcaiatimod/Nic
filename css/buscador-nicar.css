@@ -1,0 +1,249 @@
+/* ===================================================================
+   BUSCADOR NIC - Estilos
+   =================================================================== */
+
+/* -------------------------------------------------------------------
+   LOADER - Escudo animado con texto
+   ------------------------------------------------------------------- */
+.loading-overlay {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+
+/* Estado activo: muestra el loader centrado */
+.loading-overlay.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Contenedor del escudo */
+.loader {
+    position: relative;
+    font-size: 2.5rem;
+    color: #ddd
+}
+
+/* Fill (parte azul del escudo que se anima) */
+.loader .fill {
+    position: absolute;
+    inset: 0;
+    color: #0767A7;
+    clip-path: inset(0 0 100% 0);
+    animation: shield-fill 2s infinite linear
+}
+
+/* Texto debajo del escudo */
+.loading-text {
+    margin: 0;
+    font-size: 17px;
+    color: #333
+}
+
+/* Animación del fill azul del escudo
+   - 0%: fill oculto (100% de altura oculto)
+   - 25%: fill comienza a aparecer
+   - 100%: fill completamente visible */
+@keyframes shield-fill {
+    0% {
+        clip-path: inset(0 0 100% 0)
+    }
+
+    25%,
+    100% {
+        clip-path: inset(0 0 0 0)
+    }
+}
+
+
+/* -------------------------------------------------------------------
+   CONTENIDO CON EFECTO LOADING
+   ------------------------------------------------------------------- */
+.weather-content {
+    transition: all 0.3s ease;
+}
+
+/* Estado: cuando está cargando, el contenido se ve borroso y deshabilitado */
+.weather-content.loading {
+    filter: blur(8px);
+    opacity: 0.5;
+    pointer-events: none;
+    user-select: none;
+}
+
+
+/* ===================================================================
+   COMPONENTES GENERALES (originales)
+   =================================================================== */
+.card-custom {
+  background: linear-gradient(135deg, #ffffff 0%, #e3e9ff 100%);
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 20px;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.btn-gradient {
+  display: inline-block;
+  padding: 10px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none !important;
+  color: #2e3d62 !important;
+  border-radius: 50px;
+  position: relative;
+  background-image: linear-gradient(white, white), linear-gradient(to right, #2e3d62, #6a82fb);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+.container:has(.explora) {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 100% !important;
+  background-color: #F2F2F2;
+}
+
+/* BUSCADOR NIC */
+.nic-container {
+  background-color: #f6f7f7;
+  padding: 40px 0 80px;
+  border-bottom: 1px solid #dcdcde;
+}
+
+.nic-search-box {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 8px 15px;
+  border-radius: 12px;
+  box-shadow: 0 0.667rem 0.889rem 0.056rem rgba(0, 0, 0, 0.20);
+  border: 1px solid #dcdcde;
+  min-height: 90px;
+}
+
+.nic-resultados {
+  display: flex;
+  background: #fff;
+  padding: 8px 15px;
+  border-radius: 12px;
+  box-shadow: 0 0.667rem 0.889rem 0.056rem rgba(0, 0, 0, 0.20);
+  border: 1px solid #dcdcde;
+}
+
+.nic-input-wrapper {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.nic-input-wrapper .form-control {
+  border: none !important;
+  box-shadow: none !important;
+  height: 80px;
+  font-size: 45px;
+  background: transparent;
+}
+
+#buscador-dominios-nic input[type="text"]::placeholder {
+  color: #838383;
+}
+
+.nic-action-group {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  border: 1px solid #dcdcde;
+  border-radius: 8px;
+  padding: 6px 8px;
+  margin-left: 10px;
+}
+
+.form-select-minimal {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  height: 25px !important;
+  font-size: 18px !important;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  padding: 0 10px !important;
+}
+
+.nic-btn {
+  height: 38px !important;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ANIMACIONES */
+.tj-explora h2 {
+  border-bottom: 2px solid #0767A7;
+  padding-bottom: 8px;
+}
+
+.tj-explora ul p {
+  margin: 20px 0 0;
+}
+
+.glyphicon-spin {
+  animation: spin 1s infinite linear;
+  font-size: 28px;
+  color: #3858e9;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 767px) {
+  .nic-search-box {
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .nic-input-wrapper {
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #dcdcde;
+    margin-bottom: 10px;
+  }
+
+  .nic-input-wrapper .form-control {
+    height: 60px;
+    font-size: 28px;
+  }
+
+  .nic-action-group {
+    width: 100%;
+    margin-left: 0;
+    justify-content: space-between;
+  }
+}
