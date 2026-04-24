@@ -319,7 +319,7 @@
             elementos.weatherContent.classList.remove('loading');
         }
 
-        mostrarAlerta('El dominio <span class=\"fw-bold\">' + dominio + '</span> <span class=\"fw-bold\">no está disponible</span> para registarlo.', 'danger', '<i class="glyphicon glyphicon-remove" style="font-size: 2.5em;"></i>');
+        mostrarAlerta('El dominio <span class=\"fw-bold\">' + dominio + '</span> <span class=\"fw-bold\">no está disponible</span> para registrarlo.', 'danger', '<i class="glyphicon glyphicon-remove" style="font-size: 2.5em;"></i>');
         mostrarDetalles(data);
     }
 
@@ -424,7 +424,7 @@
             '<div class="media">' +
             '<div class="media-left media-middle"><i class="fa fa-check-circle fa-3x"></i></div>' +
             '<div class="media-body media-middle">' +
-            '<p class="margin-0">El dominio <span class=\"fw-bold\">' + dominio + '</span> <span class=\"fw-bold\">está disponible</span>.</p>' +
+            '<p class="margin-0">El dominio <span class=\"fw-bold\">' + dominio + '</span> <span class=\"fw-bold\">está disponible</span> para registrarlo.</p>' +
             '</div>' +
             '</div>';
         elementos.alertResultado.style.display = 'block';
