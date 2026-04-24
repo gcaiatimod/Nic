@@ -157,7 +157,7 @@
     function handleSubmit(e) {
         if (e) e.preventDefault();
         if (busquedaEnProceso) return false;
-        
+
         const dominio = elementos.inputDominio.value.trim();
         const tld = elementos.selectTld.value;
         if (!dominio) {
@@ -179,15 +179,15 @@
 
     function mostrarAvisosZona(tld) {
         if (!elementos.avisosZona) return;
-        
+
         let mensajes = [];
-        
+
         if (ZONAS_PERSONAS_JURIDICAS.indexOf(tld) !== -1) {
-            mensajes.push('Recordá que estos dominios son solo para <strong>Personas Jurídicas</strong>.');
+            mensajes.push('Recordá que estos dominios son solo para <span class=\"fw-bold\">Personas Jurídicas</span>.');
         }
-        
+
         if (ZONAS_HABILITACION_ESPECIAL.indexOf(tld) !== -1) {
-            mensajes.push('Requiere <a href="https://www.argentina.gob.ar/servicio/solicitar-la-habilitacion-de-zonas-especiales" target="_blank" rel="noopener noreferrer"><strong>Habilitación Especial</strong></a>.');
+            mensajes.push('Requiere <a href="https://www.argentina.gob.ar/servicio/solicitar-la-habilitacion-de-zonas-especiales" target="_blank" rel="noopener noreferrer"><span class=\"fw-bold\">Habilitación Especial</span></a>.');
         }
 
         if (mensajes.length > 0) {
@@ -197,16 +197,16 @@
             } else {
                 contenido = '<ul style="margin-bottom:0; padding-left:20px;"><li>' + mensajes.join('</li><li>') + '</li></ul>';
             }
-            let html = 
+            let html =
                 '<div class="alert alert-warning">' +
-                    '<div class="media">' +
-                        '<div class="media-left media-middle">' +
-                            '<i class="fa fa-check-circle-o fa-fw fa-4x"></i>' +
-                        '</div>' +
-                        '<div class="media-body media-middle">' +
-                            contenido +
-                        '</div>' +
-                    '</div>' +
+                '<div class="media">' +
+                '<div class="media-left media-middle">' +
+                '<i class="fa fa-exclamation-circle fa-fw fa-4x"></i>' +
+                '</div>' +
+                '<div class="media-body media-middle">' +
+                contenido +
+                '</div>' +
+                '</div>' +
                 '</div>';
             elementos.avisosZona.innerHTML = html;
             elementos.avisosZona.style.display = 'block';
@@ -221,14 +221,14 @@
         return regex.test(dominio) && !dominio.startsWith('-') && !dominio.endsWith('-');
     }
 
-/**
-     * ----------------------------------------------------------------
-     * BUSCAR DOMINIO - Busca en datos mock o API real
-     * ----------------------------------------------------------------
-     * Para usar loader mejorado:
-     *   1. Descomentar loading-overlay en HTML
-     *   2. Cambiar mostrarLoader() por mostrarLoaderMejorado() y ocultarLoader() por ocultarLoaderMejorado()
-     */
+    /**
+         * ----------------------------------------------------------------
+         * BUSCAR DOMINIO - Busca en datos mock o API real
+         * ----------------------------------------------------------------
+         * Para usar loader mejorado:
+         *   1. Descomentar loading-overlay en HTML
+         *   2. Cambiar mostrarLoader() por mostrarLoaderMejorado() y ocultarLoader() por ocultarLoaderMejorado()
+         */
     function buscarDominio(dominio) {
         /* Loader simple (original) */
         mostrarLoader();
@@ -312,14 +312,14 @@
     // API real comentada para testing local
     function procesarResultado(data, dominio) {
         busquedaEnProceso = false;
-        
+
         /* Ocultar loader mejorado después de procesar */
         if (elementos.loadingOverlay && elementos.weatherContent) {
             elementos.loadingOverlay.classList.remove('active');
             elementos.weatherContent.classList.remove('loading');
         }
-        
-        mostrarAlerta('El dominio <strong>' + dominio + '</strong> no está disponible para registarlo.', 'danger', '<i class="glyphicon glyphicon-remove" style="font-size: 2.5em;"></i>');
+
+        mostrarAlerta('El dominio <span class=\"fw-bold\">' + dominio + '</span> no está disponible para registarlo.', 'danger', '<i class="glyphicon glyphicon-remove" style="font-size: 2.5em;"></i>');
         mostrarDetalles(data);
     }
 
@@ -399,17 +399,17 @@
     function manejarError(error, dominio) {
         /* Para usar loader mejorado, cambiar a: ocultarLoaderMejorado() */
         busquedaEnProceso = false;
-        
+
         /* Ocultar loader mejorado después de procesar */
         if (elementos.loadingOverlay && elementos.weatherContent) {
             elementos.loadingOverlay.classList.remove('active');
             elementos.weatherContent.classList.remove('loading');
         }
-        
+
         if (error.message === 'DOMINIO_NO_ENCONTRADO') {
             mostrarTemplateDominioLibre(dominio);
         } else {
-            mostrarAlerta('<strong>Error:</strong> No se pudo completar la consulta.', 'danger', '<i class="glyphicon glyphicon-exclamation-sign" style="font-size: 2.5em;"></i>');
+            mostrarAlerta('<span class=\"fw-bold\">Error:</span> No se pudo completar la consulta.', 'danger', '<i class="glyphicon glyphicon-exclamation-sign" style="font-size: 2.5em;"></i>');
         }
         elementos.resultado.style.display = 'block';
     }
@@ -418,53 +418,53 @@
         busquedaEnProceso = false;
         const tld = elementos.selectTld.value;
         const ZONAS_HABILITACION_ESPECIAL = ['.bet.ar', '.coop.ar', '.gob.ar', '.int.ar', '.mil.ar', '.musica.ar', '.mutual.ar', '.org.ar', '.seg.ar', '.senasa.ar', '.tur.ar'];
-        
+
         elementos.alertResultado.className = 'alert alert-success';
         elementos.alertResultado.innerHTML =
             '<div class="media">' +
-                '<div class="media-left media-middle"><i class="fa fa-check-circle fa-3x"></i></div>' +
-                '<div class="media-body media-middle">' +
-                    '<p class="margin-0">El dominio <strong>' + dominio + '</strong> está disponible.</p>' +
-                '</div>' +
+            '<div class="media-left media-middle"><i class="fa fa-check-circle fa-3x"></i></div>' +
+            '<div class="media-body media-middle">' +
+            '<p class="margin-0">El dominio <span class=\"fw-bold\">' + dominio + '</span> está disponible.</p>' +
+            '</div>' +
             '</div>';
         elementos.alertResultado.style.display = 'block';
-        
+
         // Manejar sección de registro
         if (elementos.seccionRegistro) {
             elementos.seccionRegistro.style.display = 'block';
-            
+
             // Mostrar nota si es zona especial
             if (elementos.notaZonasEspeciales) {
                 elementos.notaZonasEspeciales.style.display = ZONAS_HABILITACION_ESPECIAL.includes(tld) ? 'block' : 'none';
             }
-            
+
             // Configurar botón
             if (elementos.btnRegistroDirecto) {
                 elementos.btnRegistroDirecto.href = 'https://www.argentina.gob.ar/servicio/registrar-un-dominio-de-internet?dominio=' + encodeURIComponent(dominio) + '&tld=' + encodeURIComponent(tld);
             }
         }
-        
+
         if (elementos.infoAdicional) {
             elementos.infoAdicional.style.display = 'none';
         }
-        
+
         elementos.resultado.style.display = 'block';
         elementos.detallesDominio.style.display = 'block';
     }
 
-function mostrarAlerta(mensaje, tipo, icono) {
+    function mostrarAlerta(mensaje, tipo, icono) {
         const iconos = {
             'success': '<i class="icono-arg-check"></i>',
-            'danger': '<i class="icono-arg-cancel"></i>', 
+            'danger': '<i class="icono-arg-cancel"></i>',
             'warning': '<i class="icono-arg-warning"></i>',
             'info': '<i class="icono-arg-info"></i>'
         };
         const claseIcono = icono || iconos[tipo] || iconos['info'];
         elementos.alertResultado.className = 'alert alert-' + tipo;
-        elementos.alertResultado.innerHTML = 
+        elementos.alertResultado.innerHTML =
             '<div class="media">' +
-                '<div class="media-left media-middle">' + claseIcono + '</div>' +
-                '<div class="media-body media-middle">' + mensaje + '</div>' +
+            '<div class="media-left media-middle">' + claseIcono + '</div>' +
+            '<div class="media-body media-middle">' + mensaje + '</div>' +
             '</div>';
         elementos.alertResultado.style.display = 'block';
     }
@@ -475,11 +475,11 @@ function mostrarAlerta(mensaje, tipo, icono) {
      * ----------------------------------------------------------------
      */
     /* Loader original (simple) */
-    function mostrarLoader() { 
-        elementos.loader.style.display = 'block'; 
-        elementos.btnBuscar.disabled = true; 
+    function mostrarLoader() {
+        elementos.loader.style.display = 'block';
+        elementos.btnBuscar.disabled = true;
     }
-    
+
     /* Loader mejorado - activar escudo animado */
     function mostrarLoaderMejorado() {
         if (elementos.loadingOverlay && elementos.weatherContent) {
@@ -488,13 +488,13 @@ function mostrarAlerta(mensaje, tipo, icono) {
         }
         elementos.btnBuscar.disabled = true;
     }
-    
-    function ocultarLoader() { 
-        elementos.loader.style.display = 'none'; 
-        elementos.btnBuscar.disabled = false; 
-        busquedaEnProceso = false; 
+
+    function ocultarLoader() {
+        elementos.loader.style.display = 'none';
+        elementos.btnBuscar.disabled = false;
+        busquedaEnProceso = false;
     }
-    
+
     /* Loader mejorado - desactivar escudo animado */
     function ocultarLoaderMejorado() {
         if (elementos.loadingOverlay && elementos.weatherContent) {
