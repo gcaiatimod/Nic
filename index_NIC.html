@@ -81,12 +81,6 @@
             border-left-color: #EA1A0B
         }
 
-        .alert-danger .media-left i,
-        .alert-danger .btn {
-            background: #EA1A0B;
-            color: #fff
-        }
-
         .alert-success {
             background: #DBF8E8;
             border-left-color: #2E7D33
@@ -286,18 +280,28 @@
                                                 <div id="detalles-dominio" style="display: none;">
                                                     <div class="panel panel-default nic-resultados">
                                                         <div class="panel-body">
-                                                            <h4 class="panel-title h3 m-b-2">Resultados de la búsqueda</h4>
-                                                            
+                                                            <h4 class="panel-title h3 m-b-2">Resultados de la búsqueda
+                                                            </h4>
+
                                                             <div id="alert-resultado"></div>
                                                             
+                                                            <div id="seccion-registro-disponible" style="display: none;" class="m-t-2">
+                                                                <div id="nota-zonas-especiales" class="m-b-2" style="display: none;">
+                                                                    <p class="text-muted small">Acordate que los dominios '.bet.ar', '.coop.ar', '.gob.ar', '.int.ar', '.mil.ar', '.musica.ar', '.mutual.ar', '.org.ar', '.seg.ar', '.senasa.ar' o '.tur.ar' son zonas especiales, por lo que para obtenerlos, tenés que solicitar su habilitación. Conocé cómo hacerlo a través de nuestro <a href="https://www.argentina.gob.ar/servicio/solicitar-la-habilitacion-de-zonas-especiales" target="_blank">instructivo</a>.</p>
+                                                                </div>
+                                                                <a href="#" id="btn-registro-directo" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Quiero registrarlo</a>
+                                                            </div>
+
                                                             <div id="info-adicional">
                                                                 <div class="clearfix"></div>
-                                                                <p>Debajo encontrarás los datos del dominio. Si no son tuyos
+                                                                <p>Debajo encontrarás los datos del dominio. Si no son
+                                                                    tuyos
                                                                     y tenés mejor derecho o interés legítimo sobre este
                                                                     dominio, podés iniciar una <a
                                                                         href="https://www.argentina.gob.ar/disputar-un-dominio-de-internet">Disputa</a>.
                                                                 </p>
-                                                                <p class="m-t-1">¿Querés registrar otro nombre? Te sugerimos
+                                                                <p class="m-t-1">¿Querés registrar otro nombre? Te
+                                                                    sugerimos
                                                                     buscar uno que te represente.</p>
 
                                                                 <h4 class="panel-title h4 m-t-2">Datos del dominio</h4>
@@ -327,13 +331,16 @@
                                                                 </dl>
 
                                                                 <div id="seccion-nameservers" style="display: none;">
-                                                                    <h5 class="m-t-2">Servidores de nombres (Nameservers)</h5>
-                                                                    <ul id="lista-nameservers" class="list-unstyled"></ul>
+                                                                    <h5 class="m-t-2">Servidores de nombres
+                                                                        (Nameservers)</h5>
+                                                                    <ul id="lista-nameservers" class="list-unstyled">
+                                                                    </ul>
                                                                 </div>
 
                                                                 <div id="seccion-dnssec" style="display: none;">
                                                                     <h5 class="m-t-2">DNSSEC</h5>
-                                                                    <p><span class="label label-success">Zona firmada</span></p>
+                                                                    <p><span class="label label-success">Zona
+                                                                            firmada</span></p>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -74,7 +74,10 @@
             listaNameservers: document.getElementById('lista-nameservers'),
             seccionDnssec: document.getElementById('seccion-dnssec'),
             avisosZona: document.getElementById('avisos-zona'),
-            infoAdicional: document.getElementById('info-adicional')
+            infoAdicional: document.getElementById('info-adicional'),
+            seccionRegistro: document.getElementById('seccion-registro-disponible'),
+            notaZonasEspeciales: document.getElementById('nota-zonas-especiales'),
+            btnRegistroDirecto: document.getElementById('btn-registro-directo')
         };
 
         if (!elementos.form) return;
@@ -374,6 +377,10 @@
             elementos.listaNameservers.innerHTML = '';
         }
 
+        if (elementos.seccionRegistro) {
+            elementos.seccionRegistro.style.display = 'none';
+        }
+
         elementos.seccionDnssec.style.display = data.secureDNS && data.secureDNS.delegationSigned ? 'block' : 'none';
         if (elementos.infoAdicional) {
             elementos.infoAdicional.style.display = 'block';
@@ -410,6 +417,7 @@
     function mostrarTemplateDominioLibre(dominio) {
         busquedaEnProceso = false;
         const tld = elementos.selectTld.value;
+        const ZONAS_HABILITACION_ESPECIAL = ['.bet.ar', '.coop.ar', '.gob.ar', '.int.ar', '.mil.ar', '.musica.ar', '.mutual.ar', '.org.ar', '.seg.ar', '.senasa.ar', '.tur.ar'];
         
         elementos.alertResultado.className = 'alert alert-success';
         elementos.alertResultado.innerHTML =
@@ -420,6 +428,21 @@
                 '</div>' +
             '</div>';
         elementos.alertResultado.style.display = 'block';
+        
+        // Manejar sección de registro
+        if (elementos.seccionRegistro) {
+            elementos.seccionRegistro.style.display = 'block';
+            
+            // Mostrar nota si es zona especial
+            if (elementos.notaZonasEspeciales) {
+                elementos.notaZonasEspeciales.style.display = ZONAS_HABILITACION_ESPECIAL.includes(tld) ? 'block' : 'none';
+            }
+            
+            // Configurar botón
+            if (elementos.btnRegistroDirecto) {
+                elementos.btnRegistroDirecto.href = 'https://www.argentina.gob.ar/servicio/registrar-un-dominio-de-internet?dominio=' + encodeURIComponent(dominio) + '&tld=' + encodeURIComponent(tld);
+            }
+        }
         
         if (elementos.infoAdicional) {
             elementos.infoAdicional.style.display = 'none';
