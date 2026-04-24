@@ -5,16 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#242C4F">
-    <title>Título de la página | Argentina.gob.ar</title>
+    <title>Dominios para el desarrollo | Argentina.gob.ar</title>
+    <link rel="icon"
+        href="https://qa2-back.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/favicon.ico"
+        type="image/x-icon">
 
-    
+
     <link type="text/css" rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
         media="all">
     <link type="text/css" rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" media="all">
 
-    
+
     <link rel="stylesheet"
         href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet"
@@ -22,36 +25,100 @@
     <link rel="stylesheet"
         href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/poncho.min.css">
 
-    
+
     <style>
         @font-face {
             font-family: 'Glyphicons Halflings';
             src: url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/fonts/glyphicons-halflings-regular.eot');
             src: url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-                 url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/fonts/glyphicons-halflings-regular.woff2') format('woff2'),
-                 url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/fonts/glyphicons-halflings-regular.woff') format('woff'),
-                 url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
-                 url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+                url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/fonts/glyphicons-halflings-regular.woff2') format('woff2'),
+                url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/fonts/glyphicons-halflings-regular.woff') format('woff'),
+                url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+                url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
         }
     </style>
 
     <style>
-        #avisos-zona{padding:0 1.5rem!important}
-        #avisos-zona .alert{margin:0 .5rem!important}
-        .alert{border-radius:0;border:0;border-left:.333rem solid}
-        .alert .media-left{padding-right:.667rem}
-        .alert p{margin-bottom:.556rem}
-        .content_format .alert .h5{margin-top:0}
-        .alert-info{background:#D9F5FF;border-left-color:#0072BB}
-        .alert-info .media-left i,.alert-info .btn{background:#0072BB;color:#fff}
-        .alert-danger{background:#FFE4E4;border-left-color:#EA1A0B}
-        .alert-danger .media-left i,.alert-danger .btn{background:#EA1A0B;color:#fff}
-        .alert-success{background:#DBF8E8;border-left-color:#2E7D33}
-        .alert-success .media-left i,.alert-success .btn{background:#2E7D33;color:#fff}
-        .alert-warning{background:#FFF7DF;border-left-color:#F9A822}
-        .alert-warning .media-left i{color:#F9A822}
-        .alert-warning .btn{background:#F9A822;color:#333}
-        @media(max-width:768px){.alert .media-left{float:none;display:block;margin-bottom:.444rem}}
+        #avisos-zona {
+            padding: 0 1.5rem !important
+        }
+
+        #avisos-zona .alert {
+            margin: 0 .5rem !important
+        }
+
+        .alert {
+            border-radius: 0;
+            border: 0;
+            border-left: .333rem solid
+        }
+
+        .alert .media-left {
+            padding-right: .667rem
+        }
+
+        .alert p {
+            margin-bottom: .556rem
+        }
+
+        .content_format .alert .h5 {
+            margin-top: 0
+        }
+
+        .alert-info {
+            background: #D9F5FF;
+            border-left-color: #0072BB
+        }
+
+        .alert-info .media-left i,
+        .alert-info .btn {
+            background: #0072BB;
+            color: #fff
+        }
+
+        .alert-danger {
+            background: #FFE4E4;
+            border-left-color: #EA1A0B
+        }
+
+        .alert-danger .media-left i,
+        .alert-danger .btn {
+            background: #EA1A0B;
+            color: #fff
+        }
+
+        .alert-success {
+            background: #DBF8E8;
+            border-left-color: #2E7D33
+        }
+
+        .alert-success .media-left i,
+        .alert-success .btn {
+            background: #2E7D33;
+            color: #fff
+        }
+
+        .alert-warning {
+            background: #FFF7DF;
+            border-left-color: #F9A822
+        }
+
+        .alert-warning .media-left i {
+            color: #F9A822
+        }
+
+        .alert-warning .btn {
+            background: #F9A822;
+            color: #333
+        }
+
+        @media(max-width:768px) {
+            .alert .media-left {
+                float: none;
+                display: block;
+                margin-bottom: .444rem
+            }
+        }
     </style>
 
     <!-- *NUEVO* Datos de test embebidos para desarrollo local sin API -->
@@ -80,13 +147,13 @@
     }
     </script>
 
-    
+
     <link rel="stylesheet" href="css/buscador-nicar.css">
 </head>
 
 <body class="html no-sidebars">
 
-    
+
     <header>
         <nav class="navbar navbar-top navbar-default border-bottom-amarillo">
             <div class="container">
@@ -112,8 +179,8 @@
                             <a href="https://mi.argentina.gob.ar/" id="btn-mi-argentina"
                                 class="btn hidden-xs p-l-1 btn-login bg-miarg-azul"
                                 aria-label="Ingresar a Mi Argentina">
-                                <i class="fa-3x fa icono-arg-mi-argentina-extended text-white p-t-0" aria-hidden="true"><span
-                                        class="sr-only">Mi Argentina</span></i>
+                                <i class="fa-3x fa icono-arg-mi-argentina-extended text-white p-t-0"
+                                    aria-hidden="true"><span class="sr-only">Mi Argentina</span></i>
                             </a>
                         </div>
                     </div>
@@ -127,7 +194,7 @@
             <div class="region region-content">
                 <div id="block-system-main" class="block block-system clearfix">
 
-                    
+
                     <div class="row m-t-2">
                         <div class="col-md-12">
                             <ol class="breadcrumb pull-left device-breadcrumb" aria-label="Migas de pan">
@@ -138,59 +205,65 @@
                         </div>
                     </div>
 
-                    
+
                     <div class="row m-t-3">
                         <div class="col-md-12">
-                            <h1 class="margin-bottom-2">Título de la Página</h1>
-                            <p class="lead margin-bottom-3">Bajada o texto introductorio breve que resume el contenido.
+                            <h1 class="margin-bottom-2">Dominios para el desarrollo</h1>
+                            <p class="lead margin-bottom-3">Facilitamos el acceso a una internet segura mediante la
+                                administración de dominios .ar, promoviendo la igualdad y el crecimiento.
                             </p>
 
                             <hr class="margin-top-1 margin-bottom-4">
 
-                            
+
 
                             <div class="nic-container bg-arg-negro-light p-t-0" id="buscador-dominios-nic">
                                 <div class="container text-center">
                                     <div class="row">
                                         <div class="col-md-11 p-l-1 text-left">
-                                            <h1 class="m-b-1 h5 font-sans-serif">Encontrá, registrá y empezá a crear.</h1>
+                                            <h1 class="m-b-1 h5 font-sans-serif">Encontrá, registrá y empezá a crear.
+                                            </h1>
 
-                                            <form id="form-buscar-dominio" class="nic-search-box" onsubmit="return false;">
+                                            <form id="form-buscar-dominio" class="nic-search-box"
+                                                onsubmit="return false;">
                                                 <div class="nic-input-wrapper">
-                                                    <input type="text" name="dominio" class="form-control font-serif" id="input-dominio" 
-                                                           placeholder="" autocomplete="off" aria-label="Nombre del dominio">
+                                                    <input type="text" name="dominio" class="form-control font-serif"
+                                                        id="input-dominio" placeholder="" autocomplete="off"
+                                                        aria-label="Nombre del dominio">
                                                 </div>
-                                                
+
                                                 <div class="nic-action-group bg-gray">
                                                     <select class="form-control form-select-minimal" id="select-tld">
-                                                            <option value=".ar">.ar</option>
-                                                            <option value=".com.ar">.com.ar</option>
-                                                            <option value=".net.ar">.net.ar</option>
-                                                            <option value=".gob.ar">.gob.ar</option>
-                                                            <option value=".int.ar">.int.ar</option>
-                                                            <option value=".mil.ar">.mil.ar</option>
-                                                            <option value=".musica.ar">.musica.ar</option>
-                                                            <option value=".org.ar">.org.ar</option>
-                                                            <option value=".tur.ar">.tur.ar</option>
-                                                            <option value=".seg.ar">.seg.ar</option>
-                                                            <option value=".senasa.ar">.senasa.ar</option>
-                                                            <option value=".coop.ar">.coop.ar</option>
-                                                            <option value=".mutual.ar">.mutual.ar</option>
-                                                            <option value=".bet.ar">.bet.ar</option>
+                                                        <option value=".ar">.ar</option>
+                                                        <option value=".com.ar">.com.ar</option>
+                                                        <option value=".net.ar">.net.ar</option>
+                                                        <option value=".gob.ar">.gob.ar</option>
+                                                        <option value=".int.ar">.int.ar</option>
+                                                        <option value=".mil.ar">.mil.ar</option>
+                                                        <option value=".musica.ar">.musica.ar</option>
+                                                        <option value=".org.ar">.org.ar</option>
+                                                        <option value=".tur.ar">.tur.ar</option>
+                                                        <option value=".seg.ar">.seg.ar</option>
+                                                        <option value=".senasa.ar">.senasa.ar</option>
+                                                        <option value=".coop.ar">.coop.ar</option>
+                                                        <option value=".mutual.ar">.mutual.ar</option>
+                                                        <option value=".bet.ar">.bet.ar</option>
                                                     </select>
                                                 </div>
 
-                                                <button type="button" class="btn btn-primary nic-btn m-t-05" id="btn-buscar">
+                                                <button type="button" class="btn btn-primary nic-btn m-t-05"
+                                                    id="btn-buscar">
                                                     Buscar
                                                 </button>
                                             </form>
 
-                                            
+
                                             <div id="avisos-zona" class="m-t-2" style="display: none;"></div>
 
                                             <!-- Loader original (simple) -->
                                             <div id="loader-dominio" class="m-t-3 text-center" style="display: none;">
-                                                <i class="glyphicon glyphicon-refresh glyphicon-spin" aria-hidden="true"></i>
+                                                <i class="glyphicon glyphicon-refresh glyphicon-spin"
+                                                    aria-hidden="true"></i>
                                                 <p class="m-t-1" role="status">Buscando disponibilidad...</p>
                                             </div>
 
@@ -208,31 +281,38 @@
                                             </div>
                                             -->
 
-                                            
+
                                             <div id="resultado-dominio" class="m-t-3" style="display: none;">
-                                                
+
                                                 <!-- Contenedor con efecto blur (para loader mejorado) -->
                                                 <!--
                                                 <div id="weather-content" class="weather-content">
                                                 -->
-                                                
+
                                                 <div id="detalles-dominio" style="display: none;">
                                                     <div class="panel panel-default nic-resultados">
 
                                                         <div class="panel-body">
-                                                        <h4 class="panel-title h3 m-b-2">Resultados de la búsqueda</h4>
+                                                            <h4 class="panel-title h3 m-b-2">Resultados de la búsqueda
+                                                            </h4>
 
-                                                
-                                                        <div id="alert-resultado" class="col-md-8 col-md-offset-2"></div>
-                                                        <div class="clearfix"></div>
 
-                                                        <p>Debajo encontrarás los datos del dominio. Si no son tuyos y tenés mejor derecho o interés legítimo sobre este dominio, podés iniciar una <a href="https://www.argentina.gob.ar/disputar-un-dominio-de-internet">Disputa</a>.</p>
-                                                        <p class="m-t-1">¿Querés registrar otro nombre? Te sugerimos buscar uno que te represente.</p>
+                                                            <div id="alert-resultado" class="col-md-8 col-md-offset-2">
+                                                            </div>
+                                                            <div class="clearfix"></div>
 
-                                                        <h4 class="panel-title h4 m-t-2">Datos del dominio</h4>
-                                                        <hr class="m-t-0">
+                                                            <p>Debajo encontrarás los datos del dominio. Si no son tuyos
+                                                                y tenés mejor derecho o interés legítimo sobre este
+                                                                dominio, podés iniciar una <a
+                                                                    href="https://www.argentina.gob.ar/disputar-un-dominio-de-internet">Disputa</a>.
+                                                            </p>
+                                                            <p class="m-t-1">¿Querés registrar otro nombre? Te sugerimos
+                                                                buscar uno que te represente.</p>
 
-                                            
+                                                            <h4 class="panel-title h4 m-t-2">Datos del dominio</h4>
+                                                            <hr class="m-t-0">
+
+
                                                             <dl class="dl-horizontal">
                                                                 <dt>Dominio:</dt>
                                                                 <dd id="dato-dominio">-</dd>
@@ -257,46 +337,48 @@
                                                             </dl>
 
                                                             <div id="seccion-nameservers" style="display: none;">
-                                                                <h5 class="m-t-2">Servidores de nombres (Nameservers)</h5>
+                                                                <h5 class="m-t-2">Servidores de nombres (Nameservers)
+                                                                </h5>
                                                                 <ul id="lista-nameservers" class="list-unstyled"></ul>
                                                             </div>
 
                                                             <div id="seccion-dnssec" style="display: none;">
                                                                 <h5 class="m-t-2">DNSSEC</h5>
-                                                                <p><span class="label label-success">Zona firmada</span></p>
+                                                                <p><span class="label label-success">Zona firmada</span>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                                </div><!-- /weather-content -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                </div><!-- /weather-content -->
-
+                                        </div><!-- /weather-content -->
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
+
             </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div><!-- /weather-content -->
+
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
         </div>
     </main>
 
-    
+
     <footer class="main-footer">
         <div class="container">
             <div class="row">
@@ -357,14 +439,14 @@
     <script src="js/buscador-nicar.js"></script>
 
     <script>
-    /***** Service Worker - commented para producción *****/
-    /*
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw-nic-proxy.js')
-            .then(reg => console.log('SW registrado'))
-            .catch(err => console.log('SW error:', err));
-    }
-    */
+        /***** Service Worker - commented para producción *****/
+        /*
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw-nic-proxy.js')
+                .then(reg => console.log('SW registrado'))
+                .catch(err => console.log('SW error:', err));
+        }
+        */
     </script>
 </body>
 
