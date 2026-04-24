@@ -407,14 +407,12 @@
         const tld = elementos.selectTld.value;
         const dataLibre = datosNIC && datosNIC.estados ? datosNIC.estados['disponible'] : { 'codigo': 'DISPONIBLE', 'mensaje': 'El dominio está disponible.', 'accion': 'Registrar', 'color': 'success' };
         
-        elementos.alertResultado.className = 'alert alert-' + dataLibre.color;
-        elementos.alertResultado.innerHTML = 
+        elementos.alertResultado.className = 'alert alert-success';
+        elementos.alertResultado.innerHTML =
             '<div class="media">' +
-                '<div class="media-left"><i class="icono-arg-check"></i></div>' +
+                '<div class="media-left"><i class="fa fa-check-circle fa-3x"></i></div>' +
                 '<div class="media-body">' +
-                    '<p class="h4"><strong>¡' + dataLibre.codigo + '</strong></p>' +
-                    '<p>El dominio <strong>' + dominio + '</strong> ' + dataLibre.mensaje + '</p>' +
-                    '<p class="m-t-1"><a href="https://www.argentina.gob.ar/servicio/registrar-un-dominio-de-internet?dominio=' + encodeURIComponent(dominio) + '&tld=' + encodeURIComponent(tld) + '" target="_blank" rel="noopener noreferrer" class="btn btn-success">' + dataLibre.accion + '</a></p>' +
+                    '<p class="margin-0">El dominio <strong>' + dominio + '</strong> está disponible.</p>' +
                 '</div>' +
             '</div>';
         elementos.alertResultado.style.display = 'block';
