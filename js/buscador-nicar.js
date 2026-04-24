@@ -55,11 +55,6 @@
             selectTld: document.getElementById('select-tld'),
             btnBuscar: document.getElementById('btn-buscar'),
             loader: document.getElementById('loader-dominio'),
-            /* -------------------------------------------------------------------
-               Loader mejorado con escudo animado
-               ------------------------------------------------------------------- */
-            loadingOverlay: document.getElementById('loading-overlay'),
-            weatherContent: document.getElementById('weather-content'),
             resultado: document.getElementById('resultado-dominio'),
             alertResultado: document.getElementById('alert-resultado'),
             detallesDominio: document.getElementById('detalles-dominio'),
@@ -313,12 +308,6 @@
     function procesarResultado(data, dominio) {
         busquedaEnProceso = false;
 
-        /* Ocultar loader mejorado después de procesar */
-        if (elementos.loadingOverlay && elementos.weatherContent) {
-            elementos.loadingOverlay.classList.remove('active');
-            elementos.weatherContent.classList.remove('loading');
-        }
-
         mostrarAlerta('El dominio <span class=\"fw-bold\">' + dominio + '</span> <span class=\"fw-bold\">no está disponible</span> para registrarlo.', 'danger', '<i class="glyphicon glyphicon-remove" style="font-size: 2.5em;"></i>');
         mostrarDetalles(data);
     }
@@ -400,12 +389,6 @@
         /* Para usar loader mejorado, cambiar a: ocultarLoaderMejorado() */
         busquedaEnProceso = false;
 
-        /* Ocultar loader mejorado después de procesar */
-        if (elementos.loadingOverlay && elementos.weatherContent) {
-            elementos.loadingOverlay.classList.remove('active');
-            elementos.weatherContent.classList.remove('loading');
-        }
-
         if (error.message === 'DOMINIO_NO_ENCONTRADO') {
             mostrarTemplateDominioLibre(dominio);
         } else {
@@ -480,27 +463,8 @@
         elementos.btnBuscar.disabled = true;
     }
 
-    /* Loader mejorado - activar escudo animado */
-    function mostrarLoaderMejorado() {
-        if (elementos.loadingOverlay && elementos.weatherContent) {
-            elementos.loadingOverlay.classList.add('active');
-            elementos.weatherContent.classList.add('loading');
-        }
-        elementos.btnBuscar.disabled = true;
-    }
-
     function ocultarLoader() {
         elementos.loader.style.display = 'none';
-        elementos.btnBuscar.disabled = false;
-        busquedaEnProceso = false;
-    }
-
-    /* Loader mejorado - desactivar escudo animado */
-    function ocultarLoaderMejorado() {
-        if (elementos.loadingOverlay && elementos.weatherContent) {
-            elementos.loadingOverlay.classList.remove('active');
-            elementos.weatherContent.classList.remove('loading');
-        }
         elementos.btnBuscar.disabled = false;
         busquedaEnProceso = false;
     }

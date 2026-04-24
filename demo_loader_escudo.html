@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Loader Escudo Nacional - Poncho</title>
+    <!-- Poncho Icons for the Shield -->
+    <link rel="stylesheet" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/icono-arg.css">
+    <!-- Bootstrap (only for button styling in demo) -->
+    <link rel="stylesheet" href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/vendor/bootstrap/css/bootstrap.min.css">
+    
+    <style>
+        body {
+            font-family: "Encode Sans", Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f6f7f7;
+            margin: 0;
+        }
+
+        /* -------------------------------------------------------------------
+           LOADER - Escudo animado con texto
+           ------------------------------------------------------------------- */
+        .loading-overlay {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Estado activo: muestra el loader */
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        /* Contenedor del escudo */
+        .loader {
+            position: relative;
+            font-size: 4rem; /* Un poco más grande para el demo */
+            color: #ddd;
+            line-height: 1;
+        }
+
+        /* Fill (parte azul del escudo que se anima) */
+        .loader .fill {
+            position: absolute;
+            inset: 0;
+            color: #0767A7;
+            clip-path: inset(0 0 100% 0);
+            animation: shield-fill 2s infinite linear;
+        }
+
+        /* Texto debajo del escudo */
+        .loading-text {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        @keyframes shield-fill {
+            0% { clip-path: inset(0 0 100% 0); }
+            25%, 100% { clip-path: inset(0 0 0 0); }
+        }
+
+        /* Efecto Blur para el contenido de atrás */
+        .content-demo {
+            text-align: center;
+            transition: filter 0.3s ease;
+        }
+        
+        .content-demo.blur {
+            filter: blur(8px);
+            pointer-events: none;
+        }
+
+        .controls {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-demo" id="main-content">
+        <h1>Demo del Loader con Escudo</h1>
+        <p>Hacé clic en el botón para ver la animación del escudo nacional.</p>
+        <img src="https://www.argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo_argentina-azul.svg" width="200" alt="Argentina.gob.ar">
+    </div>
+
+    <!-- LOADER COMPONENT -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loader">
+            <i class="icono-arg-escudo-nacional base"></i>
+            <i class="icono-arg-escudo-nacional fill"></i>
+        </div>
+        <p class="loading-text">Buscando disponibilidad...</p>
+    </div>
+
+    <div class="controls">
+        <button id="toggle-loader" class="btn btn-primary">Activar Loader (5 seg)</button>
+    </div>
+
+    <script>
+        const btn = document.getElementById('toggle-loader');
+        const overlay = document.getElementById('loading-overlay');
+        const content = document.getElementById('main-content');
+
+        btn.addEventListener('click', () => {
+            // Activar
+            overlay.classList.add('active');
+            content.classList.add('blur');
+            btn.disabled = true;
+
+            // Simular carga de 5 segundos
+            setTimeout(() => {
+                overlay.classList.remove('active');
+                content.classList.remove('blur');
+                btn.disabled = false;
+            }, 5000);
+        });
+    </script>
+
+</body>
+</html>
