@@ -220,12 +220,8 @@
          * ----------------------------------------------------------------
          * BUSCAR DOMINIO - Busca en datos mock o API real
          * ----------------------------------------------------------------
-         * Para usar loader mejorado:
-         *   1. Descomentar loading-overlay en HTML
-         *   2. Cambiar mostrarLoader() por mostrarLoaderMejorado() y ocultarLoader() por ocultarLoaderMejorado()
          */
     function buscarDominio(dominio) {
-        /* Loader simple (original) */
         mostrarLoader();
         ocultarResultados();
 
@@ -386,7 +382,6 @@
     }
 
     function manejarError(error, dominio) {
-        /* Para usar loader mejorado, cambiar a: ocultarLoaderMejorado() */
         busquedaEnProceso = false;
 
         if (error.message === 'DOMINIO_NO_ENCONTRADO') {
