@@ -194,14 +194,14 @@
             }
             let html =
                 '<div class="alert alert-warning">' +
-                '<div class="media">' +
-                '<div class="media-left media-middle">' +
-                '<i class="fa fa-exclamation-circle fa-fw fa-4x"></i>' +
-                '</div>' +
-                '<div class="media-body media-middle">' +
-                contenido +
-                '</div>' +
-                '</div>' +
+                    '<div class="media">' +
+                        '<div class="media-left media-middle">' +
+                            '<i class="fa fa-exclamation-circle fa-3x"></i>' +
+                        '</div>' +
+                        '<div class="media-body media-middle">' +
+                            contenido +
+                        '</div>' +
+                    '</div>' +
                 '</div>';
             elementos.avisosZona.innerHTML = html;
             elementos.avisosZona.style.display = 'block';
@@ -308,7 +308,7 @@
     function procesarResultado(data, dominio) {
         busquedaEnProceso = false;
 
-        mostrarAlerta('El dominio <span class=\"fw-bold\">' + dominio + '</span> <span class=\"fw-bold\">no está disponible</span> para registrarlo.', 'danger', '<i class="glyphicon glyphicon-remove" style="font-size: 2.5em;"></i>');
+        mostrarAlerta('El dominio <span class=\"fw-bold\">' + dominio + '</span> <span class=\"fw-bold\">no está disponible</span> para registrarlo.', 'danger', '<i class="fa fa-times-circle fa-3x"></i>');
         mostrarDetalles(data);
     }
 
@@ -392,7 +392,7 @@
         if (error.message === 'DOMINIO_NO_ENCONTRADO') {
             mostrarTemplateDominioLibre(dominio);
         } else {
-            mostrarAlerta('<span class=\"fw-bold\">Error:</span> No se pudo completar la consulta.', 'danger', '<i class="glyphicon glyphicon-exclamation-sign" style="font-size: 2.5em;"></i>');
+            mostrarAlerta('<span class=\"fw-bold\">Error:</span> No se pudo completar la consulta.', 'danger', '<i class="fa fa-exclamation-triangle fa-3x"></i>');
         }
         elementos.resultado.style.display = 'block';
     }
@@ -437,10 +437,10 @@
 
     function mostrarAlerta(mensaje, tipo, icono) {
         const iconos = {
-            'success': '<i class="icono-arg-check"></i>',
-            'danger': '<i class="icono-arg-cancel"></i>',
-            'warning': '<i class="icono-arg-warning"></i>',
-            'info': '<i class="icono-arg-info"></i>'
+            'success': '<i class="fa fa-check-circle fa-3x"></i>',
+            'danger': '<i class="fa fa-times-circle fa-3x"></i>',
+            'warning': '<i class="fa fa-exclamation-circle fa-3x"></i>',
+            'info': '<i class="fa fa-info-circle fa-3x"></i>'
         };
         const claseIcono = icono || iconos[tipo] || iconos['info'];
         elementos.alertResultado.className = 'alert alert-' + tipo;
