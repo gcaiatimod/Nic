@@ -92,12 +92,6 @@
             border-left-color: #2E7D33
         }
 
-        .alert-success .media-left i,
-        .alert-success .btn {
-            background: #2E7D33;
-            color: #fff
-        }
-
         .alert-warning {
             background: #FFF7DF;
             border-left-color: #F9A822
@@ -291,61 +285,56 @@
 
                                                 <div id="detalles-dominio" style="display: none;">
                                                     <div class="panel panel-default nic-resultados">
-
                                                         <div class="panel-body">
-                                                            <h4 class="panel-title h3 m-b-2">Resultados de la búsqueda
-                                                            </h4>
-
-
-                                                            <div id="alert-resultado" class="col-md-8 col-md-offset-2">
-                                                            </div>
-                                                            <div class="clearfix"></div>
-
-                                                            <p>Debajo encontrarás los datos del dominio. Si no son tuyos
-                                                                y tenés mejor derecho o interés legítimo sobre este
-                                                                dominio, podés iniciar una <a
-                                                                    href="https://www.argentina.gob.ar/disputar-un-dominio-de-internet">Disputa</a>.
-                                                            </p>
-                                                            <p class="m-t-1">¿Querés registrar otro nombre? Te sugerimos
-                                                                buscar uno que te represente.</p>
-
-                                                            <h4 class="panel-title h4 m-t-2">Datos del dominio</h4>
-                                                            <hr class="m-t-0">
-
-
-                                                            <dl class="dl-horizontal">
-                                                                <dt>Dominio:</dt>
-                                                                <dd id="dato-dominio">-</dd>
-
-                                                                <dt>Titular:</dt>
-                                                                <dd id="dato-titular">-</dd>
-
-                                                                <dt>CUIL/CUIT:</dt>
-                                                                <dd id="dato-cuil-cuit">-</dd>
-
-                                                                <dt>Estado:</dt>
-                                                                <dd id="dato-estado">-</dd>
-
-                                                                <dt>Fecha de registro:</dt>
-                                                                <dd id="dato-registro">-</dd>
-
-                                                                <dt>Fecha de expiración:</dt>
-                                                                <dd id="dato-expiracion">-</dd>
-
-                                                                <dt>Última modificación:</dt>
-                                                                <dd id="dato-modificacion">-</dd>
-                                                            </dl>
-
-                                                            <div id="seccion-nameservers" style="display: none;">
-                                                                <h5 class="m-t-2">Servidores de nombres (Nameservers)
-                                                                </h5>
-                                                                <ul id="lista-nameservers" class="list-unstyled"></ul>
-                                                            </div>
-
-                                                            <div id="seccion-dnssec" style="display: none;">
-                                                                <h5 class="m-t-2">DNSSEC</h5>
-                                                                <p><span class="label label-success">Zona firmada</span>
+                                                            <h4 class="panel-title h3 m-b-2">Resultados de la búsqueda</h4>
+                                                            
+                                                            <div id="alert-resultado"></div>
+                                                            
+                                                            <div id="info-adicional">
+                                                                <div class="clearfix"></div>
+                                                                <p>Debajo encontrarás los datos del dominio. Si no son tuyos
+                                                                    y tenés mejor derecho o interés legítimo sobre este
+                                                                    dominio, podés iniciar una <a
+                                                                        href="https://www.argentina.gob.ar/disputar-un-dominio-de-internet">Disputa</a>.
                                                                 </p>
+                                                                <p class="m-t-1">¿Querés registrar otro nombre? Te sugerimos
+                                                                    buscar uno que te represente.</p>
+
+                                                                <h4 class="panel-title h4 m-t-2">Datos del dominio</h4>
+                                                                <hr class="m-t-0">
+
+                                                                <dl class="dl-horizontal">
+                                                                    <dt>Dominio:</dt>
+                                                                    <dd id="dato-dominio">-</dd>
+
+                                                                    <dt>Titular:</dt>
+                                                                    <dd id="dato-titular">-</dd>
+
+                                                                    <dt>CUIL/CUIT:</dt>
+                                                                    <dd id="dato-cuil-cuit">-</dd>
+
+                                                                    <dt>Estado:</dt>
+                                                                    <dd id="dato-estado">-</dd>
+
+                                                                    <dt>Fecha de registro:</dt>
+                                                                    <dd id="dato-registro">-</dd>
+
+                                                                    <dt>Fecha de expiración:</dt>
+                                                                    <dd id="dato-expiracion">-</dd>
+
+                                                                    <dt>Última modificación:</dt>
+                                                                    <dd id="dato-modificacion">-</dd>
+                                                                </dl>
+
+                                                                <div id="seccion-nameservers" style="display: none;">
+                                                                    <h5 class="m-t-2">Servidores de nombres (Nameservers)</h5>
+                                                                    <ul id="lista-nameservers" class="list-unstyled"></ul>
+                                                                </div>
+
+                                                                <div id="seccion-dnssec" style="display: none;">
+                                                                    <h5 class="m-t-2">DNSSEC</h5>
+                                                                    <p><span class="label label-success">Zona firmada</span></p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

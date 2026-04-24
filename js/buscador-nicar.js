@@ -73,7 +73,8 @@
             seccionNameservers: document.getElementById('seccion-nameservers'),
             listaNameservers: document.getElementById('lista-nameservers'),
             seccionDnssec: document.getElementById('seccion-dnssec'),
-            avisosZona: document.getElementById('avisos-zona')
+            avisosZona: document.getElementById('avisos-zona'),
+            infoAdicional: document.getElementById('info-adicional')
         };
 
         if (!elementos.form) return;
@@ -374,6 +375,10 @@
         }
 
         elementos.seccionDnssec.style.display = data.secureDNS && data.secureDNS.delegationSigned ? 'block' : 'none';
+        if (elementos.infoAdicional) {
+            elementos.infoAdicional.style.display = 'block';
+        }
+
         elementos.detallesDominio.style.display = 'block';
         elementos.resultado.style.display = 'block';
     }
@@ -405,7 +410,6 @@
     function mostrarTemplateDominioLibre(dominio) {
         busquedaEnProceso = false;
         const tld = elementos.selectTld.value;
-        const dataLibre = datosNIC && datosNIC.estados ? datosNIC.estados['disponible'] : { 'codigo': 'DISPONIBLE', 'mensaje': 'El dominio está disponible.', 'accion': 'Registrar', 'color': 'success' };
         
         elementos.alertResultado.className = 'alert alert-success';
         elementos.alertResultado.innerHTML =
@@ -417,18 +421,11 @@
             '</div>';
         elementos.alertResultado.style.display = 'block';
         
-        elementos.datoDominio.textContent = dominio;
-        elementos.datoTitular.textContent = '-';
-        elementos.datoCuilCuit.textContent = '-';
-        elementos.datoEstado.innerHTML = '<span class="label label-success">' + dataLibre.codigo + '</span>';
-        elementos.datoRegistro.textContent = '-';
-        elementos.datoExpiracion.textContent = '-';
-        elementos.datoModificacion.textContent = '-';
+        if (elementos.infoAdicional) {
+            elementos.infoAdicional.style.display = 'none';
+        }
         
-        elementos.seccionNameservers.style.display = 'none';
-        elementos.listaNameservers.innerHTML = '';
-        elementos.seccionDnssec.style.display = 'none';
-        
+        elementos.resultado.style.display = 'block';
         elementos.detallesDominio.style.display = 'block';
     }
 
