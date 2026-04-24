@@ -200,10 +200,10 @@
             let html = 
                 '<div class="alert alert-warning">' +
                     '<div class="media">' +
-                        '<div class="media-left">' +
+                        '<div class="media-left media-middle">' +
                             '<i class="fa fa-check-circle-o fa-fw fa-4x"></i>' +
                         '</div>' +
-                        '<div class="media-body">' +
+                        '<div class="media-body media-middle">' +
                             contenido +
                         '</div>' +
                     '</div>' +
@@ -422,8 +422,8 @@
         elementos.alertResultado.className = 'alert alert-success';
         elementos.alertResultado.innerHTML =
             '<div class="media">' +
-                '<div class="media-left"><i class="fa fa-check-circle fa-3x"></i></div>' +
-                '<div class="media-body">' +
+                '<div class="media-left media-middle"><i class="fa fa-check-circle fa-3x"></i></div>' +
+                '<div class="media-body media-middle">' +
                     '<p class="margin-0">El dominio <strong>' + dominio + '</strong> está disponible.</p>' +
                 '</div>' +
             '</div>';
@@ -463,8 +463,8 @@ function mostrarAlerta(mensaje, tipo, icono) {
         elementos.alertResultado.className = 'alert alert-' + tipo;
         elementos.alertResultado.innerHTML = 
             '<div class="media">' +
-                '<div class="media-left">' + claseIcono + '</div>' +
-                '<div class="media-body">' + mensaje + '</div>' +
+                '<div class="media-left media-middle">' + claseIcono + '</div>' +
+                '<div class="media-body media-middle">' + mensaje + '</div>' +
             '</div>';
         elementos.alertResultado.style.display = 'block';
     }
