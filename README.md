@@ -18,18 +18,18 @@ Buscador de dominios argentinos integrado al sitio [Argentina.gob.ar](https://ww
 
 Utiliza la API RDAP de [nic.ar](https://rdap.nic.ar/) para consultar datos de dominios.
 
-## Estructura
+## Estructura de Archivos
 
 ```
-├── index_NIC.html          # Página principal
+├── index_NIC.html          # Página de visualización, demos y pruebas locales
 ├── css/
-│   └── buscador-nicar.css # Estilos del buscador
+│   └── buscador-nicar.css  # Estilos específicos del componente (estilo Poncho)
 ├── js/
-│   ├── buscador-nicar.js   # Lógica principal
-│   ├── tlds.json           # Lista de TLDs disponibles
-│   └── sw-nic-proxy.js     # Service worker para proxy
+│   ├── buscador-nicar.js   # Lógica principal, manejo de API RDAP y motor de Mock Data
+│   ├── tlds.json           # Configuración de TLDs y Banco de Casos de Prueba (Mock)
+│   └── sw-nic-proxy.js     # Service Worker para intercepción de tráfico (opcional)
 └── templates/
-    └── buscador-nicar.html # Template del componente
+    └── buscador-nicar.html # Esqueleto HTML limpio para integración en otros CMS
 ```
 
 ## Tecnologías
