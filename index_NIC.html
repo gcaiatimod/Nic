@@ -152,181 +152,557 @@
     </header>
 
     <main role="main">
+        <div class="panel-pane pane-encabezados">
+
+
+            <div class="pane-content">
+                <div class="jumbotron">
+                    <div class="jumbotron_bar device-breadcrumb__hidden">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ol class="breadcrumb device-breadcrumb" itemscope=""
+                                        itemtype="https://schema.org/BreadcrumbList" role="list"
+                                        aria-label="Migas de pan">
+                                        <li itemprop="itemListElement" itemscope=""
+                                            itemtype="https://schema.org/ListItem"><a itemprop="item" href="/"><span
+                                                    itemprop="name">Inicio</span></a>
+                                            <meta itemprop="position" content="1">
+                                        </li>
+                                        <li class="active" itemprop="itemListElement" itemscope=""
+                                            itemtype="https://schema.org/ListItem"><span itemprop="name">Dominios para
+                                                el desarrollo</span>
+                                            <meta itemprop="position" content="2">
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="encabezado">
+
+                    <div class="bg-arg-negro-light container-fluid enc-img">
+                        <div class="container">
+
+
+                            <div class="row">
+
+                                <div class="col-md-6 col-xs-12 col-sm-12 p-y-2">
+                                    <img alt="Dominios  para el desarrollo"
+                                        src="https://qa2-back.argentina.gob.ar/sites/default/files/styles/isotipo/public/imagenEncabezado/group_4170.png?itok=2u-jgreu"
+                                        class="img-responsive iso">
+                                    <h1>Dominios para el desarrollo</h1>
+                                    <p>Facilitamos el acceso a una internet segura mediante la
+                                        administración de dominios .ar, promoviendo la igualdad y el
+                                        crecimiento.</p>
+
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12 p-r-0 p-l-0">
+                                    <figure>
+                                        <img alt="Logo nic.ar en 3D"
+                                            src="https://qa2-back.argentina.gob.ar/sites/default/files/styles/foto_encabezado_con_imagen/public/imagenEncabezado/frame_1942.png?itok=67dcnf8k"
+                                            class="img-responsive">
+                                    </figure>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="nic-container bg-arg-negro-light p-t-0 m-b-0 p-b-4" id="buscador-dominios-nic">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-11 p-l-1 text-left">
+                        <h1 class="m-b-1 h5 font-sans-serif">Encontrá, registrá y empezá a crear.
+                        </h1>
+
+                        <form id="form-buscar-dominio" class="nic-search-box" onsubmit="return false;">
+                            <div class="nic-input-wrapper">
+                                <input type="text" name="dominio" class="form-control font-serif" id="input-dominio"
+                                    placeholder="" autocomplete="off" aria-label="Nombre del dominio">
+                            </div>
+
+                            <div class="nic-action-group bg-gray">
+                                <select class="form-control form-select-minimal" id="select-tld">
+                                    <option value=".ar">.ar</option>
+                                    <option value=".com.ar">.com.ar</option>
+                                    <option value=".net.ar">.net.ar</option>
+                                    <option value=".gob.ar">.gob.ar</option>
+                                    <option value=".int.ar">.int.ar</option>
+                                    <option value=".mil.ar">.mil.ar</option>
+                                    <option value=".musica.ar">.musica.ar</option>
+                                    <option value=".org.ar">.org.ar</option>
+                                    <option value=".tur.ar">.tur.ar</option>
+                                    <option value=".seg.ar">.seg.ar</option>
+                                    <option value=".senasa.ar">.senasa.ar</option>
+                                    <option value=".coop.ar">.coop.ar</option>
+                                    <option value=".mutual.ar">.mutual.ar</option>
+                                    <option value=".bet.ar">.bet.ar</option>
+                                </select>
+                            </div>
+
+                            <button type="button" class="btn btn-primary nic-btn m-t-05" id="btn-buscar">
+                                Buscar
+                            </button>
+                        </form>
+
+
+                        <div id="avisos-zona" class="m-t-2" style="display: none;"></div>
+
+                        <div id="loader-dominio" class="m-t-3 text-center" style="display: none;">
+                            <i class="glyphicon glyphicon-refresh glyphicon-spin" aria-hidden="true"></i>
+                            <p class="m-t-1" role="status">Buscando disponibilidad...</p>
+                        </div>
+
+
+
+                        <div id="resultado-dominio" class="m-t-3" style="display: none;">
+
+
+                            <div id="detalles-dominio" style="display: none;">
+                                <div class="panel panel-default nic-resultados">
+                                    <div class="panel-body">
+                                        <h4 class="panel-title h3 m-b-2">Resultados de la búsqueda
+                                        </h4>
+
+                                        <div id="alert-resultado"></div>
+
+                                        <div id="seccion-registro-disponible" style="display: none;" class="m-t-2">
+                                            <div id="nota-zonas-especiales" class="m-b-2" style="display: none;">
+                                                <p class="text-muted">Acordate que los dominios
+                                                    '<span class="fw-bold">.bet.ar</span>', '<span
+                                                        class="fw-bold">.coop.ar</span>', '<span
+                                                        class="fw-bold">.gob.ar</span>', '<span
+                                                        class="fw-bold">.int.ar</span>',
+                                                    '<span class="fw-bold">.mil.ar</span>', '<span
+                                                        class="fw-bold">.musica.ar</span>', '<span
+                                                        class="fw-bold">.mutual.ar</span>',
+                                                    '<span class="fw-bold">.org.ar</span>', '<span
+                                                        class="fw-bold">.seg.ar</span>', '<span
+                                                        class="fw-bold">.senasa.ar</span>' o '<span
+                                                        class="fw-bold">.tur.ar</span>'
+                                                    son zonas especiales, por lo que para
+                                                    obtenerlos, tenés que solicitar su habilitación.
+                                                    Conocé cómo hacerlo a través de nuestro <a
+                                                        href="https://www.argentina.gob.ar/servicio/solicitar-la-habilitacion-de-zonas-especiales"
+                                                        target="_blank">instructivo</a>.</p>
+                                            </div>
+                                            <a href="#" id="btn-registro-directo" class="btn btn-primary"
+                                                target="_blank" rel="noopener noreferrer">Quiero registrarlo</a>
+                                        </div>
+
+                                        <div id="info-adicional">
+                                            <div class="clearfix"></div>
+                                            <p>Debajo encontrarás los datos del dominio. Si no son
+                                                tuyos
+                                                y tenés mejor derecho o interés legítimo sobre este
+                                                dominio, podés iniciar una <a
+                                                    href="https://www.argentina.gob.ar/disputar-un-dominio-de-internet">disputa</a>.
+                                            </p>
+                                            <p class="m-t-1">¿Querés registrar otro nombre? Te
+                                                sugerimos
+                                                buscar uno que te represente.</p>
+
+                                            <h4 class="panel-title h4 m-t-2">Datos del dominio</h4>
+                                            <hr class="m-t-0">
+
+                                            <dl class="dl-horizontal">
+                                                <dt>Dominio:</dt>
+                                                <dd id="dato-dominio">-</dd>
+
+                                                <dt>Titular:</dt>
+                                                <dd id="dato-titular">-</dd>
+
+                                                <dt>CUIL/CUIT:</dt>
+                                                <dd id="dato-cuil-cuit">-</dd>
+
+                                                <dt>Estado:</dt>
+                                                <dd id="dato-estado">-</dd>
+
+                                                <dt>Fecha de registro:</dt>
+                                                <dd id="dato-registro">-</dd>
+
+                                                <dt>Fecha de expiración:</dt>
+                                                <dd id="dato-expiracion">-</dd>
+
+                                                <dt>Última modificación:</dt>
+                                                <dd id="dato-modificacion">-</dd>
+                                            </dl>
+
+                                            <div id="seccion-nameservers" style="display: none;">
+                                                <h5 class="m-t-2">Servidores de nombres
+                                                    (Nameservers)</h5>
+                                                <ul id="lista-nameservers" class="list-unstyled">
+                                                </ul>
+                                            </div>
+
+                                            <div id="seccion-dnssec" style="display: none;">
+                                                <h5 class="m-t-2">DNSSEC</h5>
+                                                <p><span class="label label-success">Zona
+                                                        firmada</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container margin-bottom-4">
             <div class="region region-content">
                 <div id="block-system-main" class="block block-system clearfix">
 
 
-                    <div class="row m-t-2">
-                        <div class="col-md-12">
-                            <ol class="breadcrumb pull-left device-breadcrumb" aria-label="Migas de pan">
-                                <li><a href="https://www.argentina.gob.ar/">Inicio</a></li>
-                                <li><a href="#">Área o Ministerio</a></li>
-                                <li class="active">Página Interior</li>
-                            </ol>
-                        </div>
-                    </div>
+
 
 
                     <div class="row m-t-3">
                         <div class="col-md-12">
-                            <h1 class="margin-bottom-2">Dominios para el desarrollo</h1>
-                            <p class="lead margin-bottom-3">Facilitamos el acceso a una internet segura mediante la
-                                administración de dominios .ar, promoviendo la igualdad y el crecimiento.
-                            </p>
-
-                            <hr class="margin-top-1 margin-bottom-4">
 
 
 
-                            <div class="nic-container bg-arg-negro-light p-t-0 m-b-1 p-b-2" id="buscador-dominios-nic">
-                                <div class="container text-center">
-                                    <div class="row">
-                                        <div class="col-md-11 p-l-1 text-left">
-                                            <h1 class="m-b-1 h5 font-sans-serif">Encontrá, registrá y empezá a crear.
-                                            </h1>
 
-                                            <form id="form-buscar-dominio" class="nic-search-box"
-                                                onsubmit="return false;">
-                                                <div class="nic-input-wrapper">
-                                                    <input type="text" name="dominio" class="form-control font-serif"
-                                                        id="input-dominio" placeholder="" autocomplete="off"
-                                                        aria-label="Nombre del dominio">
-                                                </div>
-
-                                                <div class="nic-action-group bg-gray">
-                                                    <select class="form-control form-select-minimal" id="select-tld">
-                                                        <option value=".ar">.ar</option>
-                                                        <option value=".com.ar">.com.ar</option>
-                                                        <option value=".net.ar">.net.ar</option>
-                                                        <option value=".gob.ar">.gob.ar</option>
-                                                        <option value=".int.ar">.int.ar</option>
-                                                        <option value=".mil.ar">.mil.ar</option>
-                                                        <option value=".musica.ar">.musica.ar</option>
-                                                        <option value=".org.ar">.org.ar</option>
-                                                        <option value=".tur.ar">.tur.ar</option>
-                                                        <option value=".seg.ar">.seg.ar</option>
-                                                        <option value=".senasa.ar">.senasa.ar</option>
-                                                        <option value=".coop.ar">.coop.ar</option>
-                                                        <option value=".mutual.ar">.mutual.ar</option>
-                                                        <option value=".bet.ar">.bet.ar</option>
-                                                    </select>
-                                                </div>
-
-                                                <button type="button" class="btn btn-primary nic-btn m-t-05"
-                                                    id="btn-buscar">
-                                                    Buscar
-                                                </button>
-                                            </form>
+                            <section>
+                                <div class="container">
+                                    <div class="panel-pane pane-texto">
 
 
-                                            <div id="avisos-zona" class="m-t-2" style="display: none;"></div>
+                                        <div class="pane-content">
+                                            <div class="">
+                                                <section>
+                                                    <div class="container">
+                                                        <div class="row flex-items-xs-middle p-b-3">
 
-                                            <div id="loader-dominio" class="m-t-3 text-center" style="display: none;">
-                                                <i class="glyphicon glyphicon-refresh glyphicon-spin"
-                                                    aria-hidden="true"></i>
-                                                <p class="m-t-1" role="status">Buscando disponibilidad...</p>
-                                            </div>
-
-
-
-                                            <div id="resultado-dominio" class="m-t-3" style="display: none;">
-
-
-                                                <div id="detalles-dominio" style="display: none;">
-                                                    <div class="panel panel-default nic-resultados">
-                                                        <div class="panel-body">
-                                                            <h4 class="panel-title h3 m-b-2">Resultados de la búsqueda
-                                                            </h4>
-
-                                                            <div id="alert-resultado"></div>
-
-                                                            <div id="seccion-registro-disponible" style="display: none;"
-                                                                class="m-t-2">
-                                                                <div id="nota-zonas-especiales" class="m-b-2"
-                                                                    style="display: none;">
-                                                                    <p class="text-muted">Acordate que los dominios
-                                                                        '<span class="fw-bold">.bet.ar</span>', '<span
-                                                                            class="fw-bold">.coop.ar</span>', '<span
-                                                                            class="fw-bold">.gob.ar</span>', '<span
-                                                                            class="fw-bold">.int.ar</span>',
-                                                                        '<span class="fw-bold">.mil.ar</span>', '<span
-                                                                            class="fw-bold">.musica.ar</span>', '<span
-                                                                            class="fw-bold">.mutual.ar</span>',
-                                                                        '<span class="fw-bold">.org.ar</span>', '<span
-                                                                            class="fw-bold">.seg.ar</span>', '<span
-                                                                            class="fw-bold">.senasa.ar</span>' o '<span
-                                                                            class="fw-bold">.tur.ar</span>'
-                                                                        son zonas especiales, por lo que para
-                                                                        obtenerlos, tenés que solicitar su habilitación.
-                                                                        Conocé cómo hacerlo a través de nuestro <a
-                                                                            href="https://www.argentina.gob.ar/servicio/solicitar-la-habilitacion-de-zonas-especiales"
-                                                                            target="_blank">instructivo</a>.</p>
-                                                                </div>
-                                                                <a href="#" id="btn-registro-directo"
-                                                                    class="btn btn-primary" target="_blank"
-                                                                    rel="noopener noreferrer">Quiero registrarlo</a>
+                                                            <div class="col-xs-12 col-md-7">
+                                                                <img src="https://qa2-back.argentina.gob.ar/sites/default/files/vetana-3d-2.png"
+                                                                    alt="Captura de interfaces de nic.ar"
+                                                                    class="img-responsive center-block">
                                                             </div>
 
-                                                            <div id="info-adicional">
-                                                                <div class="clearfix"></div>
-                                                                <p>Debajo encontrarás los datos del dominio. Si no son
-                                                                    tuyos
-                                                                    y tenés mejor derecho o interés legítimo sobre este
-                                                                    dominio, podés iniciar una <a
-                                                                        href="https://www.argentina.gob.ar/disputar-un-dominio-de-internet">Disputa</a>.
+                                                            <div class="col-xs-12 col-md-5">
+                                                                <h3>Somos nic.ar</h3>
+                                                                <p>
+                                                                    Dentro de la Dirección Nacional del Registro de
+                                                                    Dominios de Internet,
+                                                                    bajo la Secretaría Legal y Técnica de la
+                                                                    Presidencia. Integramos
+                                                                    organizaciones para el desarrollo de la red.
                                                                 </p>
-                                                                <p class="m-t-1">¿Querés registrar otro nombre? Te
-                                                                    sugerimos
-                                                                    buscar uno que te represente.</p>
+                                                            </div>
 
-                                                                <h4 class="panel-title h4 m-t-2">Datos del dominio</h4>
-                                                                <hr class="m-t-0">
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
 
-                                                                <dl class="dl-horizontal">
-                                                                    <dt>Dominio:</dt>
-                                                                    <dd id="dato-dominio">-</dd>
 
-                                                                    <dt>Titular:</dt>
-                                                                    <dd id="dato-titular">-</dd>
+                                    </div>
+                                    <div class="panel-separator"></div>
+                                    <div class="panel-pane pane-atajos">
 
-                                                                    <dt>CUIL/CUIT:</dt>
-                                                                    <dd id="dato-cuil-cuit">-</dd>
 
-                                                                    <dt>Estado:</dt>
-                                                                    <dd id="dato-estado">-</dd>
+                                        <div class="pane-content">
+                                            <div class="row panels-row m-t-2 ">
+                                                <div class="col-xs-12 col-sm-12 col-md-12"><a
+                                                        href="https://nic.ar/no_residentes" class="panel panel-default"> <!-- // Evaluamos si es par o impar
+                  // Si el resto de dividir por 2 es 0, es par -> Imagen a la Izquierda
+                  // Si el resto es 1, es impar -> Imagen a la Derecha -->
 
-                                                                    <dt>Fecha de registro:</dt>
-                                                                    <dd id="dato-registro">-</dd>
 
-                                                                    <dt>Fecha de expiración:</dt>
-                                                                    <dd id="dato-expiracion">-</dd>
+                                                        <div class="panel-body m-0 p-0">
+                                                            <div class="row tarjeta-evento">
 
-                                                                    <dt>Última modificación:</dt>
-                                                                    <dd id="dato-modificacion">-</dd>
-                                                                </dl>
+                                                                <div
+                                                                    class="col-md-5 col-sm-12 col-xs-12 tarjeta-ima f-right">
+                                                                    <img src="https://qa2-back.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/imagen_165.png?itok=rMUhQv_V"
+                                                                        alt="">
+                                                                </div>
+                                                                <div class="col-md-7 col-xs-12 col-sm-12 tj-texto">
+                                                                    <p class="text-primary m-b-2 h1">Nueva sección para
+                                                                        no residentes</p>
 
-                                                                <div id="seccion-nameservers" style="display: none;">
-                                                                    <h5 class="m-t-2">Servidores de nombres
-                                                                        (Nameservers)</h5>
-                                                                    <ul id="lista-nameservers" class="list-unstyled">
-                                                                    </ul>
+                                                                    <div>
+                                                                        <p>Esta sección reúne toda la información útil
+                                                                            para los&nbsp;usuarios No Residentes de NIC
+                                                                            Argentina.</p>
+                                                                    </div>
                                                                 </div>
 
-                                                                <div id="seccion-dnssec" style="display: none;">
-                                                                    <h5 class="m-t-2">DNSSEC</h5>
-                                                                    <p><span class="label label-success">Zona
-                                                                            firmada</span></p>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <style>
+                                                            .tarjeta-evento {
+                                                                box-shadow: 0 0.667rem 0.889rem 0.056rem rgba(0, 0, 0, 0.20);
+                                                                margin: 0px 0px;
+                                                            }
+
+                                                            .tj-texto {
+                                                                padding: 10px 40px;
+                                                            }
+
+                                                            .tarjeta-ima {
+                                                                border-radius: 0px;
+                                                                padding: 0px;
+                                                                aspect-ratio: 16 / 9;
+                                                                overflow: hidden;
+                                                                display: flex;
+                                                                align-items: center;
+                                                                justify-content: center;
+                                                            }
+
+                                                            .tarjeta-ima img {
+                                                                width: 100%;
+                                                                height: 100%;
+                                                                object-fit: contain;
+                                                                object-position: center;
+                                                            }
+
+                                                            .tarjeta-evento .tarjeta-ima img {
+                                                                border-radius: 0px;
+                                                            }
+                                                        </style>
+                                                    </a></div>
+                                                <div class="col-xs-12 col-sm-12 col-md-12"><a
+                                                        href="https://t.me/NICAr_Notificaciones_bot"
+                                                        class="panel panel-default"> <!-- // Evaluamos si es par o impar
+                  // Si el resto de dividir por 2 es 0, es par -> Imagen a la Izquierda
+                  // Si el resto es 1, es impar -> Imagen a la Derecha -->
+
+                                                        <div class="panel-body m-0 p-0">
+                                                            <div class="row tarjeta-evento">
+                                                                <div class="col-md-5 col-sm-12 col-xs-12 tarjeta-ima">
+                                                                    <img src="https://qa2-back.argentina.gob.ar/sites/default/files/styles/listado/public/imagenAtajo/captura_de_pantalla_2026-03-26_a_las_12.22.44_1.png?itok=UK1Y6DqG"
+                                                                        alt="">
                                                                 </div>
+                                                                <div class="col-md-7 col-xs-12 col-sm-12 tj-texto">
+                                                                    <p class="text-primary m-b-2 h1">Alertas de
+                                                                        vencimiento en telegram</p>
+                                                                    <div>
+                                                                        <p>Suscribite a nuestro bot y renová tus
+                                                                            dominios a tiempo.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <style>
+                                                            .tarjeta-evento {
+                                                                box-shadow: 0 0.667rem 0.889rem 0.056rem rgba(0, 0, 0, 0.20);
+                                                                margin: 0px 0px;
+                                                            }
+
+                                                            .tj-texto {
+                                                                padding: 10px 40px;
+                                                            }
+
+                                                            .tarjeta-ima {
+                                                                border-radius: 0px;
+                                                                padding: 0px;
+                                                                aspect-ratio: 16 / 9;
+                                                                overflow: hidden;
+                                                                display: flex;
+                                                                align-items: center;
+                                                                justify-content: center;
+                                                            }
+
+                                                            .tarjeta-ima img {
+                                                                width: 100%;
+                                                                height: 100%;
+                                                                object-fit: contain;
+                                                                object-position: center;
+                                                            }
+
+                                                            .tarjeta-evento .tarjeta-ima img {
+                                                                border-radius: 0px;
+                                                            }
+                                                        </style>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <div class="container">
+                                    <div class="panel-pane pane-texto explora">
+
+
+                                        <div class="pane-content">
+                                            <div class="">
+                                                <div>
+                                                    <section class="">
+                                                        <div class="container">
+                                                            <div class="panel-pane pane-texto">
+                                                                <div class="pane-content">
+                                                                    <div class="row tj-texto tj-explora">
+                                                                        <div class="col-md-12 p-0">
+                                                                            <h2 class="h3 m-b-2">Explorá nic.ar</h2>
+                                                                        </div>
+
+                                                                        <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <ul class="list-unstyled">
+                                                                                    <li class="p">Nic Argentina</li>
+                                                                                    <li><a href="">Acerca de
+                                                                                            nosotros</a></li>
+                                                                                    <li><a href="">Normativa vigente</a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+
+                                                                            <div class="col-md-4">
+                                                                                <ul class="list-unstyled">
+                                                                                    <li class="p">Iniciativas</li>
+                                                                                    <li><a href="">Herramienta
+                                                                                            kitnic</a></li>
+                                                                                    <li><a href="">Blockchain federal
+                                                                                            Argentina</a></li>
+                                                                                </ul>
+                                                                            </div>
+
+                                                                            <div class="col-md-4">
+                                                                                <ul class="list-unstyled">
+                                                                                    <li class="p">Dominios</li>
+                                                                                    <li><a href="">Buscar dominio</a>
+                                                                                    </li>
+                                                                                    <li><a href="">Dominios y
+                                                                                            aranceles</a></li>
+                                                                                    <li><a href="">Nicar en números</a>
+                                                                                    </li>
+                                                                                    <li><a href="">Altas y
+                                                                                            transferencias diarias</a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <ul class="list-unstyled">
+                                                                                    <li class="p">Ayuda</li>
+                                                                                    <li><a href="">Instructivos</a></li>
+                                                                                    <li><a href="">Atención a
+                                                                                            usuarios</a></li>
+                                                                                    <li><a href="">Preguntas
+                                                                                            frecuentes</a></li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <div class="container">
+                                    <div class="panel-pane pane-texto">
+
+
+                                        <div class="pane-content">
+                                            <div class="">
+                                                <div class="container">
+                                                    <div class="row p-t-3">
+                                                        <div class="col-sm-6">
+                                                            <div class="card-custom">
+                                                                <h3 class="card-title text-primary">¿Sabías que también
+                                                                    podés registrar tu dominio como una marca?</h3>
+                                                                <a href="#" class="btn-gradient">Hacelo en INPI</a>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <div class="card-custom">
+                                                                <h3 class="card-title text-primary">¿Preferís charlar?
+                                                                    Estamos a un mensaje de distancia en WhatsApp.</h3>
+                                                                <a href="#" class="btn-gradient">Hablar con un
+                                                                    asesor</a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+
+                                    </div>
+                                    <div class="panel-separator"></div>
+                                    <div class="panel-pane pane-texto">
+
+
+                                        <div class="pane-content">
+                                            <div class="">
+                                                <div class="row  col-md-10 col-md-offset-1 tj-texto p-t-4">
+                                                    <div class="col-md-5 col-sm-12 col-xs-12">
+                                                        <img class="img-responsive m-b-2 center-block"
+                                                            src="/sites/default/files/like.social.png"
+                                                            alt="Descripción de la imagen" title="redes-sociales" style="
+    width: 250px;
+">
+                                                    </div>
+                                                    <div class="col-md-7 col-xs-12 col-sm-12">
+                                                        <p class=" m-t-0 h2 text-primary">Seguinos en nuestras redes
+                                                            sociales</p>
+                                                        <div class="social-share">
+                                                            <ul class="list-inline">
+                                                                <li><a href="https://www.facebook.com/NicArgentina"
+                                                                        target="_blank" rel="noreferrer"><span
+                                                                            class="sr-only">Facebook</span><i
+                                                                            class="icono-arg-facebook-f-"
+                                                                            aria-hidden="true"></i></a></li>
+                                                                <li><a href="https://x.com/nicargentina" target="_blank"
+                                                                        rel="noreferrer"><span class="sr-only">X (ex
+                                                                            Twitter)</span><i
+                                                                            class="icono-arg-twitter-pajaro"
+                                                                            aria-hidden="true"></i></a></li>
+                                                                <li><a href="https://www.instagram.com/nicargentina/"
+                                                                        target="_blank" rel="noreferrer"><span
+                                                                            class="sr-only">Instagram</span><i
+                                                                            class="icono-arg-instagram"
+                                                                            aria-hidden="true"></i></a></li>
+                                                                <li><a href="https://www.youtube.com/user/nicargentina"
+                                                                        target="_blank" rel="noreferrer"><span
+                                                                            class="sr-only">Youtube</span><i
+                                                                            class="icono-arg-youtube"
+                                                                            aria-hidden="true"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
-                            </div>
+                            </section>
+
                         </div>
 
                     </div>
