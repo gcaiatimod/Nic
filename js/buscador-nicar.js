@@ -1,8 +1,14 @@
 /**
  * ===========================================
- * JS: BUSCADOR DE DOMINIOS NIC.AR
+ * JS: BUSCADOR DE DOMINIOS NIC.AR (NUEVO)
  * Compatible con Bootstrap 3.4.1 (Poncho)
  * ===========================================
+ * NUEVO: Este archivo incluye datos de test embebidos (testData)
+ * para desarrollo local sin necesidad de API real.
+ *
+ * PARA PRODUCCIÓN:
+ * - Cambiar USE_MOCK_DATA = false para usar API real
+ * - O usar el archivo: buscador-nic.ar.original.js
  */
 (function () {
     'use strict';
@@ -13,8 +19,15 @@
         DEBUG: false // Cambiar a true para debug
     };
 
+    // ==============================================================
+    // *NUEVO* / PARA PRODUCClON: cambiar a false y usar API real
+    // ==============================================================
+    const USE_MOCK_DATA = true;
+
     let elementos = {};
     let inicializado = false;
+    let mockData = null;
+    let datosNIC = null;
     let busquedaEnProceso = false;
 
     const FRASES_PLACEHOLDER = [
@@ -26,6 +39,18 @@
 
     function init() {
         if (inicializado) return;
+
+        const datosScript = document.getElementById('nic-tlds-data');
+        if (datosScript) {
+            // Si tiene src externo, no intentar parsear (se carga via fetch en buscarDominioMock)
+            if (!datosScript.src && datosScript.textContent) {
+                try {
+                    datosNIC = JSON.parse(datosScript.textContent);
+                } catch (e) {
+                    console.error('Error al parsear datos NIC:', e);
+                }
+            }
+        }
 
         elementos = {
             form: document.getElementById('form-buscar-dominio'),
@@ -194,11 +219,89 @@
         return regex.test(dominio) && !dominio.startsWith('-') && !dominio.endsWith('-');
     }
 
+    /**
+         * ----------------------------------------------------------------
+         * BUSCAR DOMINIO - Busca en datos mock o API real
+         * ----------------------------------------------------------------
+         */
     function buscarDominio(dominio) {
         mostrarLoader();
         ocultarResultados();
 
+        // ==============================================================
+        // *NUEVO* MODO: USE_MOCK_DATA = true usa datos embebidos
+        // *PRODUCCIÓN*: USE_MOCK_DATA = false usa API real
+        // ==============================================================
+        if (USE_MOCK_DATA) {
+            buscarDominioMock(dominio);
+            return;
+        }
+
+        // MODO PRODUCCIÓN: Usar API real
         buscarDominioAPI(dominio);
+    }
+
+    function buscarDominioMock(dominio) {
+        // Cargar datos mock del script embebido o archivo externo
+        const scriptEl = document.getElementById('nic-tlds-data');
+        
+        if (!scriptEl) {
+            mockData = { testData: {} };
+            buscarEnMockData(dominio);
+            return;
+        }
+        
+        // Si tiene src, hacer fetch del archivo
+        if (scriptEl.src) {
+            fetch(scriptEl.src)
+                .then(res => res.json())
+                .then(data => {
+                    mockData = data;
+                    buscarEnMockData(dominio);
+                })
+                .catch(() => {
+                    mockData = { testData: {} };
+                    buscarEnMockData(dominio);
+                });
+            return;
+        }
+        
+        // Parsear contenido embebido
+        if (scriptEl.textContent) {
+            try { mockData = JSON.parse(scriptEl.textContent); }
+            catch (e) { mockData = { testData: {} }; }
+        } else {
+            mockData = { testData: {} };
+        }
+        buscarEnMockData(dominio);
+    }
+
+    function buscarEnMockData(dominio) {
+        const dominioLower = dominio.toLowerCase();
+        const partes = dominioLower.split('.');
+        const nombreDominio = partes[0];
+        const tldDominio = '.' + partes.slice(1).join('.');
+
+        // Buscar en datos mock
+        let mockResultado = null;
+        const categorias = ['disponible', 'registrado', 'registrado_sin_dnssec', 'en_transferencia', 'bloqueado', 'error'];
+        for (const cat of categorias) {
+            if (mockData.testData && mockData.testData[cat]) {
+                mockResultado = mockData.testData[cat].find(d =>
+                    d.nombre === nombreDominio && d.tld === tldDominio
+                );
+                if (mockResultado) break;
+            }
+        }
+
+        setTimeout(() => {
+            ocultarLoader();
+            if (mockResultado) {
+                procesarResultado(mockResultado.resultado, dominio);
+            } else {
+                manejarError({ message: 'DOMINIO_NO_ENCONTRADO' }, dominio);
+            }
+        }, 500);
     }
 
     function buscarDominioAPI(dominio) {
@@ -224,6 +327,7 @@
             });
     }
 
+    // API real comentada para testing local
     function procesarResultado(data, dominio) {
         busquedaEnProceso = false;
 
@@ -232,6 +336,8 @@
     }
 
     function buscarDatosTitular(url) {
+        // Descomentar para producción
+        /*
         fetch(url, { headers: { 'Accept': 'application/json' } })
             .then(response => response.ok ? response.json() : null)
             .then(data => {
@@ -244,6 +350,7 @@
                 if (elementos.datoCuilCuit) elementos.datoCuilCuit.textContent = '-';
                 if (elementos.datoTitular) elementos.datoTitular.textContent = '-';
             });
+        */
     }
 
     function extraerNombreVcard(vcardArray) {
