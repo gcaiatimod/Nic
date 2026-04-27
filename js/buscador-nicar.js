@@ -316,6 +316,8 @@
             if (mockResultado) {
                 if (mockResultado.resultado.errorCode) {
                     mostrarAlerta('<span class="fw-bold">Error ' + mockResultado.resultado.errorCode + ':</span> El servicio de consulta no está disponible temporalmente. Por favor, reintentá más tarde.', 'info', '<i class="fa fa-exclamation-triangle fa-3x"></i>');
+                    if (elementos.infoAdicional) elementos.infoAdicional.style.display = 'none';
+                    if (elementos.seccionRegistro) elementos.seccionRegistro.style.display = 'none';
                     elementos.detallesDominio.style.display = 'block';
                     elementos.resultado.style.display = 'block';
                     return;
@@ -475,6 +477,8 @@
             mostrarTemplateDominioLibre(dominio);
         } else {
             mostrarAlerta('<span class="fw-bold">Error:</span> No se pudo completar la consulta. Por favor, reintentá más tarde.', 'info', '<i class="fa fa-exclamation-triangle fa-3x"></i>');
+            if (elementos.infoAdicional) elementos.infoAdicional.style.display = 'none';
+            if (elementos.seccionRegistro) elementos.seccionRegistro.style.display = 'none';
             elementos.detallesDominio.style.display = 'block';
         }
         elementos.resultado.style.display = 'block';
@@ -564,6 +568,7 @@
         elementos.seccionNameservers.style.display = 'none';
         elementos.listaNameservers.innerHTML = '';
         elementos.seccionDnssec.style.display = 'none';
+        if (elementos.seccionRegistro) elementos.seccionRegistro.style.display = 'none';
     }
 
     if (document.readyState === 'loading') {
