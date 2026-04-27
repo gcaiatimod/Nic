@@ -244,6 +244,7 @@
     function buscarDominioMock(dominio) {
         // Cargar datos mock del script embebido o archivo externo
         const scriptEl = document.getElementById('nic-tlds-data');
+        console.log('buscarDominioMock called, scriptEl:', scriptEl ? 'found' : 'NOT FOUND');
         
         if (!scriptEl) {
             mockData = { testData: {} };
@@ -251,15 +252,25 @@
             return;
         }
         
-        // Si tiene src, hacer fetch del archivo
+        console.log('scriptEl.src:', scriptEl.src);
         if (scriptEl.src) {
-            fetch(scriptEl.src)
-                .then(res => res.json())
-                .then(data => {
+            const srcUrl = scriptEl.src;
+            console.log('Fetch URL:', srcUrl);
+            fetch(srcUrl)
+                .then(res => {
+                    console.log('Fetch response:', res.status, res.ok);
+                    return res.text();
+                })
+                .then(text => {
+                    console.log('Raw text length:', text.length);
+                    console.log('First 200 chars:', text.substring(0, 200));
+                    const data = JSON.parse(text);
+                    console.log('Parsed data keys:', Object.keys(data));
                     mockData = data;
                     buscarEnMockData(dominio);
                 })
-                .catch(() => {
+                .catch(err => {
+                    console.error('Error:', err);
                     mockData = { testData: {} };
                     buscarEnMockData(dominio);
                 });
@@ -285,18 +296,30 @@
         // Buscar en datos mock
         let mockResultado = null;
         const categorias = ['disponible', 'registrado', 'registrado_sin_dnssec', 'en_transferencia', 'bloqueado', 'error'];
+        console.log('Buscar:', nombreDominio, tldDominio);
+        console.log('mockData.testData:', mockData.testData ? Object.keys(mockData.testData) : 'undefined');
         for (const cat of categorias) {
             if (mockData.testData && mockData.testData[cat]) {
+                console.log('Buscando en:', cat);
                 mockResultado = mockData.testData[cat].find(d =>
                     d.nombre === nombreDominio && d.tld === tldDominio
                 );
-                if (mockResultado) break;
+                if (mockResultado) {
+                    console.log('Encontrado en:', cat);
+                    break;
+                }
             }
         }
 
         setTimeout(() => {
             ocultarLoader();
             if (mockResultado) {
+                if (mockResultado.resultado.errorCode) {
+                    mostrarAlerta('<span class="fw-bold">Error ' + mockResultado.resultado.errorCode + ':</span> El servicio de consulta no está disponible temporalmente. Por favor, reintentá más tarde.', 'info', '<i class="fa fa-exclamation-triangle fa-3x"></i>');
+                    elementos.detallesDominio.style.display = 'block';
+                    elementos.resultado.style.display = 'block';
+                    return;
+                }
                 procesarResultado(mockResultado.resultado, dominio);
             } else {
                 manejarError({ message: 'DOMINIO_NO_ENCONTRADO' }, dominio);
@@ -330,8 +353,45 @@
     // API real comentada para testing local
     function procesarResultado(data, dominio) {
         busquedaEnProceso = false;
+        
+        const status = (data.status && data.status[0]) ? data.status[0] : 'unknown';
+        let mensaje = '';
+        let tipo = 'danger';
+        let icono = '<i class="fa fa-times-circle fa-3x"></i>';
 
-        mostrarAlerta('El dominio <span class=\"fw-bold\">' + dominio + '</span> <span class=\"fw-bold\">no está disponible</span> para registrarlo.', 'danger', '<i class="fa fa-times-circle fa-3x"></i>');
+        // Lógica de estados según tipos de Poncho
+        switch(status) {
+            case 'available':
+                mostrarTemplateDominioLibre(dominio);
+                return; 
+            
+            case 'active':
+                const estaFirmado = data.secureDNS && data.secureDNS.delegationSigned;
+                if(!estaFirmado && (dominio.toLowerCase().includes('google'))){
+                    mensaje = 'El dominio <span class=\"fw-bold\">' + dominio + '</span> <span class=\"fw-bold\">no está disponible</span>. Detectamos que no cuenta con firma DNSSEC.';
+                    icono = '<i class="fa fa-unlock-alt fa-3x"></i>';
+                } else {
+                    mensaje = 'El dominio <span class=\"fw-bold\">' + dominio + '</span> <span class=\"fw-bold\">no está disponible</span> para registrarlo.';
+                }
+                break;
+
+            case 'pendingTransfer':
+                mensaje = 'El dominio <span class=\"fw-bold\">' + dominio + '</span> está <span class=\"fw-bold\">en proceso de transferencia</span>.';
+                tipo = 'warning';
+                icono = '<i class="fa fa-exchange fa-3x"></i>';
+                break;
+
+            case 'locked':
+                mensaje = 'El dominio <span class=\"fw-bold\">' + dominio + '</span> está <span class=\"fw-bold\">bloqueado</span> por la administración.';
+                tipo = 'danger';
+                icono = '<i class="fa fa-lock fa-3x"></i>';
+                break;
+
+            default:
+                mensaje = 'El dominio <span class=\"fw-bold\">' + dominio + '</span> no se encuentra disponible.';
+        }
+
+        mostrarAlerta(mensaje, tipo, icono);
         mostrarDetalles(data);
     }
 
@@ -414,7 +474,8 @@
         if (error.message === 'DOMINIO_NO_ENCONTRADO') {
             mostrarTemplateDominioLibre(dominio);
         } else {
-            mostrarAlerta('<span class=\"fw-bold\">Error:</span> No se pudo completar la consulta.', 'danger', '<i class="fa fa-exclamation-triangle fa-3x"></i>');
+            mostrarAlerta('<span class="fw-bold">Error:</span> No se pudo completar la consulta. Por favor, reintentá más tarde.', 'info', '<i class="fa fa-exclamation-triangle fa-3x"></i>');
+            elementos.detallesDominio.style.display = 'block';
         }
         elementos.resultado.style.display = 'block';
     }
