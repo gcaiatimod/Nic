@@ -38,4 +38,26 @@ Utiliza la API RDAP de [nic.ar](https://rdap.nic.ar/) para consultar datos de do
 - JavaScript (ES6+)
 - Bootstrap 3
 - Sistema de diseño [Poncho](https://github.com/argob/poncho)
-- API RDAP
+## Pruebas y Datos Mock (Demos)
+
+El buscador incluye un modo de desarrollo que utiliza datos locales para simular diferentes respuestas de la API de NIC.ar sin realizar peticiones reales. Esto permite testear todos los estados visuales del sistema de diseño Poncho de forma instantánea.
+
+### Configuración del Modo de Desarrollo
+En el archivo `js/buscador-nicar.js`, se puede alternar el origen de los datos:
+- `const USE_MOCK_DATA = true;`: El sistema consumirá los datos definidos en `js/tlds.json`.
+- `const USE_MOCK_DATA = false;`: El sistema realizará peticiones reales a la API RDAP (`https://rdap.nic.ar/domain/`).
+
+### Casos de Prueba Disponibles
+Para validar los diferentes estados y alertas en el entorno de desarrollo, utiliza los siguientes nombres de dominio simplificados con la extensión `.ar`:
+
+| Categoría | Dominio | Status RDAP | Comportamiento Visual |
+| :--- | :--- | :--- | :--- |
+| **Disponible** | `proyecto` | `available` | Alerta Verde (Success) + Botón de registro |
+| **Registrado** | `argentina` | `active` | Alerta Roja (Danger) + Detalle de Titular/Fechas |
+| **Sin DNSSEC** | `google` | `active` | Alerta Roja + Aviso de falta de firma DNSSEC |
+| **Transferencia**| `dominio` | `pendingTransfer` | Alerta Amarilla (Warning) de proceso en curso |
+| **Bloqueado** | `bloqueado` | `locked` | Alerta Roja + Mensaje de dominio bloqueado |
+| **Error Sistema**| `error` | `500` | Alerta Azul (Info) con mensaje de error del servidor |
+
+> [!IMPORTANT]
+> Los datos se cargan dinámicamente desde `js/tlds.json`. Cualquier modificación en la estructura de los datos de prueba debe reflejarse en ese archivo.
